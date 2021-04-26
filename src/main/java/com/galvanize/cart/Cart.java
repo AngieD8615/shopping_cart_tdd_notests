@@ -43,6 +43,15 @@ public class Cart {
         return cartItems.size();
     }
 
-
+    public ArrayList<Item> onSaleItems() {
+        ArrayList<Item> onSaleItemsList = new ArrayList<Item>();
+        for (Item item: cartItems) {
+            if (item.getIsOnSale()) {
+                onSaleItemsList.add(item);
+            }
+        }
+        System.out.println("on sale items  " + onSaleItemsList.toString());
+        return onSaleItemsList;
+    }
 
 }

@@ -156,4 +156,20 @@ public class CartTest {
         Assertions.assertEquals(3, multItemCart.itemQuantities());
 
     }
+
+    @Test
+    public void forItemsOnSale() {
+        //setup
+
+        //execute
+        Cart withSaleItems = new Cart();
+        withSaleItems.addItem(new Item("bag", 19.99, true, 15));
+        withSaleItems.addItem(new Item("expensive bag", 199.99));
+
+        //assert
+        Assertions.assertEquals(1, withSaleItems.onSaleItems().size());
+//        Assertions.assertTrue(withSaleItems.onSaleItems().contains(new Item("bag", 19.99, true, 15)));
+//        Assertions.assertFalse(withSaleItems.onSaleItems().contains(new Item("expensive bag", 199.99)));
+    }
+
 }
