@@ -56,13 +56,45 @@ public class CartTest {
     
     @Test
     public void getTotalPriceOfCart() {
+        //
         //Setup
         double expectedTotalPrice = 19.99;
 
         //execute
         Cart actualCart = new Cart();
+        // Cart is initialized empty
+        Assertions.assertEquals(0, actualCart.getTotalPrice());
+
         Item firstItem = new Item("Bag", 19.99);
         actualCart.addItem(firstItem);
         Assertions.assertEquals(expectedTotalPrice, actualCart.getTotalPrice());
+    }
+
+    @Test
+    public void testItemizedList(){
+        //Setup
+        ArrayList<Item> expectedItems = new ArrayList<>();
+
+        // Execute
+        Cart actualCart = new Cart();
+
+        // Assert
+        Assertions.assertEquals(expectedItems, actualCart.itemizedList(), "Empty cart is initialized");
+
+        expectedItems.add(new Item("Bag", 19.99));
+
+        actualCart.addItem(new Item("Bag", 19.99));
+
+        Assertions.assertArrayEquals(expectedItems.toArray(), actualCart.itemizedList().toArray());
+
+//        for(int i = 0 ; i < actualCart.itemizedList().size(); i++){
+//
+//            Assertions.assertEquals( expectedItems.get(i).getName(), actualCart.itemizedList().get(i).getName());
+//            Assertions.assertEquals( expectedItems.get(i).getPrice(), actualCart.itemizedList().get(i).getPrice());
+//
+//        }
+
+
+
     }
 }
