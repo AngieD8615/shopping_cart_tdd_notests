@@ -85,16 +85,35 @@ public class CartTest {
 
         actualCart.addItem(new Item("Bag", 19.99));
 
-        Assertions.assertArrayEquals(expectedItems.toArray(), actualCart.itemizedList().toArray());
+//        Assertions.assertArrayEquals(expectedItems.toArray(), actualCart.itemizedList().toArray());
 
-//        for(int i = 0 ; i < actualCart.itemizedList().size(); i++){
-//
-//            Assertions.assertEquals( expectedItems.get(i).getName(), actualCart.itemizedList().get(i).getName());
-//            Assertions.assertEquals( expectedItems.get(i).getPrice(), actualCart.itemizedList().get(i).getPrice());
-//
-//        }
+        for(int i = 0 ; i < actualCart.itemizedList().size(); i++){
 
+            Assertions.assertEquals( expectedItems.get(i).getName(), actualCart.itemizedList().get(i).getName());
+            Assertions.assertEquals( expectedItems.get(i).getPrice(), actualCart.itemizedList().get(i).getPrice());
 
+        }
+    }
+
+    @Test
+    public void addMultItemsToCartCheckPriceAndQunatity() {
+        //setup
+        ArrayList<Item> expectedItems = new ArrayList<Item>();
+
+        //execute
+        Cart multItemCart = new Cart();
+
+        //Test for empty cart first
+        Assertions.assertEquals(expectedItems, multItemCart.itemizedList());
+
+        expectedItems.add(new Item("bag", 19.99));
+        expectedItems.add(new Item("bag", 19.99));
+
+        multItemCart.addItem(new Item("bag", 19.99));
+        multItemCart.addItem(new Item("bag", 19.99));
+
+        Assertions.assertEquals(39.98, multItemCart.getTotalPrice());
+        Assertions.assertEquals(2, multItemCart.itemQuantities.get("bag"));
 
     }
 }
